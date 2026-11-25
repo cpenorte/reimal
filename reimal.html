@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animação Rei Corrupto SVG/CSS</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: radial-gradient(circle at center, #1b2234 0%, #0d111a 100%);
+      overflow: hidden;
+    }
+
+    .scene {
+      width: 400px;
+      height: 450px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    svg {
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+    }
+
+    /* Animação de levitação suave do rei */
+    .king-body {
+      animation: floatKing 4s ease-in-out infinite;
+      transform-origin: center;
+    }
+
+    @keyframes floatKing {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    /* Animação de levitação sutil do cetro/cajado real */
+    .scepter-group {
+      animation: floatScepter 4s ease-in-out infinite;
+      animation-delay: -0.5s;
+    }
+
+    @keyframes floatScepter {
+      0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+      }
+      50% {
+        transform: translateY(-14px) rotate(1.5deg);
+      }
+    }
+
+    /* Animação das estrelinhas em vermelho vinho */
+    .star-twinkle-1 {
+      animation: twinkle 3s ease-in-out infinite;
+    }
+    .star-twinkle-2 {
+      animation: twinkle 3s ease-in-out infinite 1s;
+    }
+    .star-twinkle-3 {
+      animation: twinkle 3s ease-in-out infinite 2s;
+    }
+
+    @keyframes twinkle {
+      0%, 100% {
+        opacity: 0.65;
+        filter: drop-shadow(0 0 1px #58111a);
+      }
+      50% {
+        opacity: 1;
+        filter: drop-shadow(0 0 5px #881337);
+      }
+    }
+
+    /* Partículas flutuantes em vermelho vinho */
+    .particle-1 {
+      animation: riseParticle 3.5s ease-in infinite;
+    }
+    .particle-2 {
+      animation: riseParticle 4.2s ease-in infinite 1.2s;
+    }
+    .particle-3 {
+      animation: riseParticle 3s ease-in infinite 2.1s;
+    }
+    .particle-4 {
+      animation: riseParticle 3.8s ease-in infinite 0.6s;
+    }
+
+    @keyframes riseParticle {
+      0% {
+        transform: translateY(0px) scale(0.5);
+        opacity: 0;
+      }
+      30% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-45px) scale(1.1);
+        opacity: 0;
+      }
+    }
+
+    /* Sombra no chão acompanhando a levitação */
+    .floor-shadow {
+      animation: shadowScale 4s ease-in-out infinite;
+      transform-origin: 200px 415px;
+    }
+
+    @keyframes shadowScale {
+      0%, 100% {
+        transform: scaleX(1);
+        opacity: 0.5;
+      }
+      50% {
+        transform: scaleX(0.85);
+        opacity: 0.3;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="scene">
+    <svg viewBox="0 0 400 450" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <!-- Gradiente da Túnica Branca Real -->
+        <linearGradient id="whiteRobeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#cbd5e1" />
+          <stop offset="50%" stop-color="#f8fafc" />
+          <stop offset="100%" stop-color="#cbd5e1" />
+        </linearGradient>
+
+        <!-- Gradiente da Capa Vermelho Escarlate -->
+        <linearGradient id="scarletCapeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#991b1b" />
+          <stop offset="50%" stop-color="#dc2626" />
+          <stop offset="100%" stop-color="#991b1b" />
+        </linearGradient>
+
+        <!-- Gradiente Dourado da Coroa e Cajado Real -->
+        <linearGradient id="royalGoldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#fef08a" />
+          <stop offset="45%" stop-color="#eab308" />
+          <stop offset="85%" stop-color="#ca8a04" />
+          <stop offset="100%" stop-color="#854d0e" />
+        </linearGradient>
+
+        <!-- Símbolo de estrelinha em vermelho vinho -->
+        <polygon id="wine-star" points="0,-6 1.8,-1.8 6,0 1.8,1.8 0,6 -1.8,1.8 -6,0 -1.8,-1.8" fill="#6b0f1a" />
+      </defs>
+
+      <!-- Sombra no chão -->
+      <ellipse class="floor-shadow" cx="200" cy="415" rx="75" ry="12" fill="#05070c" />
+
+      <!-- Grupo Principal do Rei Corrupto -->
+      <g class="king-body">
+        
+        <!-- Capa Traseira Vermelho Escarlate -->
+        <path d="M132 198 L100 388 L300 388 L268 198 Z" fill="url(#scarletCapeGrad)" />
+        <!-- Bainha dourada na base da capa -->
+        <path d="M101 382 L299 382 L300 388 L100 388 Z" fill="#eab308" />
+
+        <!-- Túnica Branca Principal -->
+        <path d="M145 195 L115 390 L285 390 L255 195 Z" fill="url(#whiteRobeGrad)" />
+
+        <!-- Detalhes dourados verticais e dobras da túnica branca -->
+        <path d="M200 235 L200 390" stroke="#eab308" stroke-width="5" />
+        <path d="M175 225 L165 390" stroke="#94a3b8" stroke-width="2.5" stroke-linecap="round" />
+        <path d="M225 225 L235 390" stroke="#94a3b8" stroke-width="2.5" stroke-linecap="round" />
+        <!-- Barra dourada inferior da túnica -->
+        <path d="M116 380 L284 380 L285 390 L115 390 Z" fill="#eab308" />
+
+        <!-- Cinto Real Dourado -->
+        <rect x="136" y="275" width="128" height="14" rx="4" fill="#ca8a04" />
+        <rect x="190" y="272" width="20" height="20" rx="3" fill="#fef08a" stroke="#854d0e" stroke-width="2.5" />
+        <circle cx="200" cy="282" r="3.5" fill="#dc2626" />
+
+        <!-- Braço Esquerdo (túnica branca com punho dourado) -->
+        <path d="M148 202 Q115 240 140 275 L162 265 Q148 240 165 215 Z" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1.5" />
+        <path d="M138 269 L160 260 L163 266 L141 275 Z" fill="#eab308" />
+        <circle cx="152" cy="272" r="10" fill="#e2b49a" />
+
+        <!-- Braço Direito (estendido para o cajado real) -->
+        <path d="M252 202 Q285 225 292 250 L272 258 Q265 235 242 215 Z" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1.5" />
+        <path d="M271 252 L291 245 L293 251 L273 258 Z" fill="#eab308" />
+        <circle cx="285" cy="252" r="10" fill="#e2b49a" />
+
+        <!-- Capa Vermelho Escarlate passando por cima dos ombros e presa abaixo do pescoço -->
+        <path d="M136 196 Q155 190 186 212 L175 232 Q145 218 134 212 Z" fill="#dc2626" stroke="#991b1b" stroke-width="1.5" />
+        <path d="M264 196 Q245 190 214 212 L225 232 Q255 218 266 212 Z" fill="#dc2626" stroke="#991b1b" stroke-width="1.5" />
+        <!-- Bordas douradas nas abas da capa sobre os ombros -->
+        <path d="M136 196 Q155 190 186 212" fill="none" stroke="#eab308" stroke-width="3" stroke-linecap="round" />
+        <path d="M264 196 Q245 190 214 212" fill="none" stroke="#eab308" stroke-width="3" stroke-linecap="round" />
+
+        <!-- Adereço Dourado central prendendo as pontas da capa abaixo do pescoço -->
+        <circle cx="200" cy="218" r="12" fill="url(#royalGoldGrad)" stroke="#854d0e" stroke-width="2" />
+        <circle cx="200" cy="218" r="5" fill="#dc2626" />
+
+        <!-- Cabelo Longo Traseiro e Topo sob a Coroa (castanho escuro, sem ultrapassar a coroa) -->
+        <path d="M155 145 Q155 112 200 112 Q245 112 245 145 Q258 195 248 230 L152 230 Q142 195 155 145 Z" fill="#3b2314" />
+
+        <!-- Rosto / Cabeça -->
+        <rect x="168" y="128" width="64" height="68" rx="28" fill="#e2b49a" />
+
+        <!-- Orelhas -->
+        <circle cx="166" cy="162" r="7" fill="#d4a083" />
+        <circle cx="234" cy="162" r="7" fill="#d4a083" />
+
+        <!-- EXPRESSÃO SÉRIA / SEVERA (preservada com pupilas negras) -->
+        <g>
+          <!-- Olho esquerdo -->
+          <ellipse cx="185" cy="158" rx="6" ry="4" fill="#ffffff" />
+          <circle cx="186" cy="158" r="2.8" fill="#090d16" />
+          <path d="M178 155 L192 156" stroke="#c68e70" stroke-width="3" stroke-linecap="round" />
+
+          <!-- Olho direito -->
+          <ellipse cx="215" cy="158" rx="6" ry="4" fill="#ffffff" />
+          <circle cx="214" cy="158" r="2.8" fill="#090d16" />
+          <path d="M208 156 L222 155" stroke="#c68e70" stroke-width="3" stroke-linecap="round" />
+        </g>
+
+        <!-- Sobrancelhas franzidas e grossas em castanho escuro -->
+        <path d="M174 148 L194 153" stroke="#2c1810" stroke-width="4.5" stroke-linecap="round" />
+        <path d="M226 148 L206 153" stroke="#2c1810" stroke-width="4.5" stroke-linecap="round" />
+        <!-- Ruga de expressão entre as sobrancelhas -->
+        <path d="M198 148 L198 154 M202 148 L202 154" stroke="#b87d60" stroke-width="1.5" stroke-linecap="round" />
+
+        <!-- Nariz definido -->
+        <path d="M200 156 L197 170 L203 171" fill="none" stroke="#b87d60" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+
+        <!-- Barba Tamanho Médio em Castanho Escuro -->
+        <path d="M168 172 Q168 205 200 222 Q232 205 232 172 Q215 184 200 184 Q185 184 168 172 Z" fill="#3b2314" />
+        <path d="M185 190 Q192 206 200 216 M215 190 Q208 206 200 216" fill="none" stroke="#26140a" stroke-width="2" />
+
+        <!-- Bigode caído em marrom/castanho escuro -->
+        <path d="M178 182 Q190 174 200 177 Q210 174 222 182 Q212 186 200 181 Q188 186 178 182 Z" fill="#4a2c18" />
+
+        <!-- Boca fechada e firme -->
+        <path d="M192 185 Q200 183 208 185" fill="none" stroke="#7c4d3b" stroke-width="2.5" stroke-linecap="round" />
+
+        <!-- COROA IMPONENTE DOURADA COM RUBIS E PEQUENOS DIAMANTES -->
+        <g>
+          <!-- Veludo interno vermelho escuro da coroa -->
+          <path d="M170 130 L174 96 L200 90 L226 96 L230 130 Z" fill="#7f1d1d" />
+
+          <!-- Estrutura dourada pontiaguda da coroa -->
+          <path d="M164 134 L160 88 L178 108 L188 80 L200 105 L212 80 L222 108 L240 88 L236 134 Z" fill="url(#royalGoldGrad)" stroke="#854d0e" stroke-width="2" stroke-linejoin="round" />
+
+          <!-- Base reforçada da coroa -->
+          <rect x="163" y="122" width="74" height="13" rx="3" fill="url(#royalGoldGrad)" stroke="#854d0e" stroke-width="2" />
+
+          <!-- Esferas douradas nas pontas superiores -->
+          <circle cx="160" cy="86" r="3.5" fill="#fef08a" stroke="#854d0e" stroke-width="1.2" />
+          <circle cx="188" cy="78" r="4" fill="#fef08a" stroke="#854d0e" stroke-width="1.2" />
+          <circle cx="212" cy="78" r="4" fill="#fef08a" stroke="#854d0e" stroke-width="1.2" />
+          <circle cx="240" cy="86" r="3.5" fill="#fef08a" stroke="#854d0e" stroke-width="1.2" />
+
+          <!-- Adereços vermelhos (rubis) na coroa -->
+          <polygon points="200,123 205,128.5 200,134 195,128.5" fill="#dc2626" stroke="#450a0a" stroke-width="1" />
+          <circle cx="177" cy="128.5" r="3.5" fill="#dc2626" stroke="#450a0a" stroke-width="1" />
+          <circle cx="223" cy="128.5" r="3.5" fill="#dc2626" stroke="#450a0a" stroke-width="1" />
+          <circle cx="200" cy="112" r="3" fill="#dc2626" />
+
+          <!-- Pequenos diamantes brilhantes -->
+          <polygon points="188,125 190.5,128.5 188,132 185.5,128.5" fill="#e0f2fe" stroke="#38bdf8" stroke-width="0.6" />
+          <polygon points="212,125 214.5,128.5 212,132 209.5,128.5" fill="#e0f2fe" stroke="#38bdf8" stroke-width="0.6" />
+          <polygon points="168,126 170,128.5 168,131 166,128.5" fill="#e0f2fe" stroke="#38bdf8" stroke-width="0.6" />
+          <polygon points="232,126 234,128.5 232,131 230,128.5" fill="#e0f2fe" stroke="#38bdf8" stroke-width="0.6" />
+        </g>
+
+      </g>
+
+      <!-- CAJADO REAL DOURADO COM PEDRAS PRECIOSAS (sem efeito luminoso) -->
+      <g class="scepter-group">
+        <!-- Haste dourada metálica -->
+        <line x1="295" y1="175" x2="282" y2="395" stroke="#854d0e" stroke-width="7.5" stroke-linecap="round" />
+        <line x1="294.5" y1="175" x2="281.5" y2="395" stroke="url(#royalGoldGrad)" stroke-width="4.5" stroke-linecap="round" />
+
+        <!-- Anéis ornamentais dourados na haste -->
+        <rect x="288" y="210" width="11" height="5" rx="2" fill="#fef08a" stroke="#854d0e" stroke-width="1" transform="rotate(3 293 212)" />
+        <rect x="284" y="290" width="11" height="5" rx="2" fill="#fef08a" stroke="#854d0e" stroke-width="1" transform="rotate(3 289 292)" />
+
+        <!-- Ornamento superior dourado do cajado real -->
+        <path d="M281 174 Q295 186 309 174 L305 164 L295 170 L285 164 Z" fill="url(#royalGoldGrad)" stroke="#854d0e" stroke-width="1.5" stroke-linejoin="round" />
+        <circle cx="295" cy="153" r="15" fill="none" stroke="url(#royalGoldGrad)" stroke-width="4" />
+        <!-- Ponta superior tipo flor-de-lis/coroa -->
+        <polygon points="295,127 299,137 295,140 291,137" fill="url(#royalGoldGrad)" stroke="#854d0e" stroke-width="1" />
+
+        <!-- Pedras preciosas encrustadas no topo (sólidas, sem brilho/aura) -->
+        <!-- Rubi central -->
+        <polygon points="295,143 303,153 295,163 287,153" fill="#b91c1c" stroke="#450a0a" stroke-width="1.5" />
+        <!-- Pequenos diamantes e esmeraldas laterais -->
+        <circle cx="280" cy="153" r="3" fill="#0284c7" stroke="#0f172a" stroke-width="0.8" />
+        <circle cx="310" cy="153" r="3" fill="#0284c7" stroke="#0f172a" stroke-width="0.8" />
+        <polygon points="295,167 298,170 295,173 292,170" fill="#e0f2fe" stroke="#0369a1" stroke-width="0.7" />
+      </g>
+
+      <!-- ESTRELINHAS E PARTÍCULAS EM VERMELHO VINHO AO REDOR DO REI -->
+      <g>
+        <!-- Estrelinhas vermelho vinho -->
+        <use href="#wine-star" x="108" y="165" class="star-twinkle-1" transform="scale(1)" />
+        <use href="#wine-star" x="275" y="115" class="star-twinkle-2" transform="scale(0.9)" />
+        <use href="#wine-star" x="95" y="265" class="star-twinkle-3" transform="scale(1.1)" />
+        <use href="#wine-star" x="322" y="235" class="star-twinkle-1" transform="scale(0.85)" />
+        <use href="#wine-star" x="115" y="340" class="star-twinkle-2" transform="scale(0.95)" />
+        <use href="#wine-star" x="315" y="325" class="star-twinkle-3" transform="scale(1)" />
+
+        <!-- Partículas flutuantes vermelho vinho -->
+        <circle class="particle-1" cx="118" cy="215" r="3" fill="#6b0f1a" />
+        <circle class="particle-2" cx="268" cy="185" r="2.5" fill="#881337" />
+        <circle class="particle-3" cx="102" cy="305" r="3.2" fill="#58111a" />
+        <circle class="particle-4" cx="318" cy="285" r="2.8" fill="#6b0f1a" />
+      </g>
+
+    </svg>
+  </div>
+
+</body>
+</html>
